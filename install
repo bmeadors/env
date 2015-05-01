@@ -1,1 +1,32 @@
-fetch file
+#!/bin/sh
+if [ $(uname) == 'FreeBSD' ]; then
+	#echo detected FreeBSD
+	if [ $(uname -a|grep -c 8.3-RELEASE) -eq 1 ]; then
+		echo detected FreeBSD 8.3-RELEASE
+		pkg=vim-lite-7.3.480.tbz
+		if [ $(pkg_info|grep -c vim-lite) -eq 1 ]; then
+			echo vim-lite already installed
+		else
+			echo fetching vim-lite package $pkg to $HOME/
+			curl -L http://ftp-archive.freebsd.org/pub/FreeBSD-Archive/ports/amd64/packages-8.3-release/All/vim-lite-7.3.480.tbz > $HOME/$pkg
+			#pkg_add $HOME/$pkg
+			#echo $?
+			#rm $HOME/$pkg
+		fi
+	elif [ $(uname -a|grep -c 10.1-RELEASE) -eq 1 ]; then
+		echo detected FreeBSD 10.1-RELEASE
+		if [ $(pkg info|grep -c vim-lite) -eq 1 ]; then
+			echo vim-lite already installed
+		else
+			echo vim-lite not installed
+		fi
+	else
+		echo unhandled version of FreeBSD .. aborting
+		exit
+	fi
+fi
+
+uri=https://raw.githubusercontent.com/bmeadors/env/master
+curl -L $uri/.aliases > $HOME/.aliases
+curl -L $uri/tmux/.tmux.conf > $HOME/.tmux.conf
+curl -L $uri/vim/.vimrc > $HOME/.vimrc
