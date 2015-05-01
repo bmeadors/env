@@ -1,0 +1,26 @@
+# shell
+alias lla='ls -al'
+alias ll='ls -l'
+alias sv='sudo vim'
+alias v='vim'
+
+# tmux
+alias t='tmux'
+alias ta='tmux attach'
+
+# gmake
+alias gcai='gmake clean all install'
+alias gai='gmake all install'
+
+# git
+alias ga='git add'
+alias gp='git pull'
+alias gpa='git pull --all'
+alias gps='git push'
+
+# rails
+alias be='bundle exec'
+alias bc='bundle exec rails console'
+alias bm='bundle exec rake db:migrate'
+alias br='bundle exec rake'
+alias brr='bundle exec rake routes'
